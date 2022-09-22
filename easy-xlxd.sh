@@ -69,8 +69,7 @@ fi
 echo "------------------------------------------------------------------------------"
 if [ -e $XLXINSTDIR/xlxd/src/xlxd ]
 then
-   echo ""
-   echo "It looks like you have already compiled XLXD. If you want to install/complile xlxd again, delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
+   sudo rm -r /root/reflector-install-files/xlxd
    exit 0
 else
    echo "Downloading and compiling xlxd... "
