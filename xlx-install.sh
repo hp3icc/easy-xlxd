@@ -1,35 +1,6 @@
 #!/bin/bash
 sudo rm -r /root/reflector-install-files/
 sudo rm -r /root/xlxd
-# A tool to install xlxd, your own D-Star Reflector.
-# For more information, please visit: https://n5amd.com
-#Lets begin-------------------------------------------------------------------------------------------------
-WHO=$(whoami)
-if [ "$WHO" != "root" ]
-then
-  echo ""
-  echo "You Must be root to run this script!!"
-  exit 0
-fi
-if [ ! -e "/etc/debian_version" ]
-then
-  echo ""
-  echo "This script is only tested in Debian 9 and x64 cpu Arch. "
-  exit 0
-fi
-DIRDIR=$(pwd)
-LOCAL_IP=$(ip a | grep inet | grep "eth0\|en" | awk '{print $2}' | tr '/' ' ' | awk '{print $1}')
-INFREF=https://n5amd.com/digital-radio-how-tos/create-xlx-xrf-d-star-reflector/
-XLXDREPO=https://github.com/n7tae/new-xlxd.git
-#https://github.com/LX3JL/xlxd.git
-DMRIDURL=http://xlxapi.rlx.lu/api/exportdmr.php
-WEBDIR=/var/www/xlxd
-#XLXINSTDIR=/root/reflector-install-files/xlxd
-XLXINSTDIR=/root/xlxd
-DEP="git build-essential apache2 php libapache2-mod-php php7.0-mbstring"
-DEP2="git build-essential apache2 php libapache2-mod-php php7.3-mbstring"
-DEP3="git build-essential apache2 php libapache2-mod-php php7.4-mbstring"
-VERSION=$(sed 's/\..*//' /etc/debian_version)
 clear
 echo ""
 echo "XLX uses 3 digit numbers for its reflectors. For example: 032, 999, 099."
@@ -55,34 +26,23 @@ echo ""
 echo "------------------------------------------------------------------------------"
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
-mkdir -p $XLXINSTDIR
-mkdir -p $WEBDIR
-apt-get update
-if [ $VERSION = 9 ]
-then
-    apt-get -y install $DEP
-    a2enmod php7.0
-elif [ $VERSION = 10 ]
-then
-    apt-get -y install $DEP2
-elif [ $VERSION = 11 ]
-then
-    apt-get -y install $DEP3
-fi
+#
+sudo apt install git
+sudo apt install apache2 php5
+sudo apt install build-essential
+sudo apt install g++
+# the following is only needed for XLX, not for XRF
+sudo apt install libmariadb-dev-compat -y
+# the following is needed if you plan on supporting local YSF frequency registration database
+sudo apt install php-mysql mariadb-server mariadb-client -y
 
 echo "------------------------------------------------------------------------------"
-if [ -e $XLXINSTDIR/xlxd/src/xlxd ]
-then
-   echo ""
-   echo "It looks like you have already compiled XLXD. If you want to install/complile xlxd again, delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
-   exit 0
-else
-   echo "Downloading and compiling xlxd... "
+cd /opt
+git clone https://github.com/LX3JL/xlxd.git
+cd xlxd/src/
+
    echo "------------------------------------------------------------------------------"
-   cd $XLXINSTDIR
-   git clone $XLXDREPO
-   mv $XLXINSTDIR/new-xlxd/ $XLXINSTDIR/xlxd/
-   cd $XLXINSTDIR/xlxd/src
+  
 #
 sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
 #sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
@@ -92,25 +52,11 @@ sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
    make clean
    make
    make install
-fi
-if [ -e $XLXINSTDIR/xlxd/src/xlxd ]
-then
-   echo ""
-   echo ""
-   echo "------------------------------------------------------------------------------"
-   echo "It looks like everything compiled successfully. There is a 'xlxd' application file. "
-else
-   echo ""
-   echo "UH OH!! I dont see the xlxd application file after attempting to compile."
-   echo "The output above is the only indication as to why it might have failed.  "
-   echo "Delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
-   echo ""
-   exit 0
-fi
-echo "------------------------------------------------------------------------------"
-echo "Getting the DMRID.dat file... "
-echo "------------------------------------------------------------------------------"
-wget -O /xlxd/dmrid.dat $DMRIDURL
+#
+XLXINSTDIR=/opt/xlxd
+
+
+
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
 cp -R $XLXINSTDIR/xlxd/dashboard/* /var/www/xlxd/
