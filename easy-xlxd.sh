@@ -73,9 +73,10 @@ else
    git clone $XLXDREPO
    cd $XLXINSTDIR/xlxd/src
    #
-   sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   5/g"  main.h
-   sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        42002/g"  main.h
+   sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
+   sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
    sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
+   sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
    #
    make clean
    make
@@ -120,6 +121,12 @@ sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
 a2ensite $XLXDOMAIN
+#
+sudo sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/Int./XLX Module/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/'Active']                               = false/'Active']                               = true/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g"  /var/www/xlxd/pgs/config.inc.php
+#
 service xlxd start
 systemctl restart apache2
 echo "------------------------------------------------------------------------------"
