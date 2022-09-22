@@ -81,7 +81,7 @@ else
    cd $XLXINSTDIR/xlxd/src
 #
 sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
-sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
+#sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
 #
