@@ -120,4 +120,4 @@ echo "Be sure to thank the creators of xlxd for the ability to spin up          
 echo "your very own D-Star reflector.                                           "
 echo ""
 echo "------------------------------------------------------------------------------"
-sudo reboot
+#sudo reboot
