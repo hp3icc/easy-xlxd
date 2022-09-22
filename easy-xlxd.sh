@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo rm -r /root/reflector-install-files/xlxd
 # A tool to install xlxd, your own D-Star Reflector.
 # For more information, please visit: https://n5amd.com
 #Lets begin-------------------------------------------------------------------------------------------------
@@ -69,7 +70,8 @@ fi
 echo "------------------------------------------------------------------------------"
 if [ -e $XLXINSTDIR/xlxd/src/xlxd ]
 then
-   sudo rm -r /root/reflector-install-files/xlxd
+   echo ""
+   echo "It looks like you have already compiled XLXD. If you want to install/complile xlxd again, delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
    exit 0
 else
    echo "Downloading and compiling xlxd... "
@@ -77,12 +79,12 @@ else
    cd $XLXINSTDIR
    git clone $XLXDREPO
    cd $XLXINSTDIR/xlxd/src
-   #
-   sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
-   sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
-   sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
-   sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
-   #
+#
+sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
+sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
+sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
+sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
+#
    make clean
    make
    make install
@@ -94,7 +96,11 @@ then
    echo "------------------------------------------------------------------------------"
    echo "It looks like everything compiled successfully. There is a 'xlxd' application file. "
 else
-   sudo rm -r /root/reflector-install-files/xlxd
+   echo ""
+   echo "UH OH!! I dont see the xlxd application file after attempting to compile."
+   echo "The output above is the only indication as to why it might have failed.  "
+   echo "Delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
+   echo ""
    exit 0
 fi
 echo "------------------------------------------------------------------------------"
@@ -112,15 +118,13 @@ update-rc.d xlxd defaults
 echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 #
-sudo sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/Int./XLX Module/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/'Active']                               = false/'Active']                               = true/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g"  /var/www/xlxd/pgs/config.inc.php
+sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" $XLXCONFIG
+sed -i "s/Int./XLX Module/g" $XLXCONFIG
+sed -i "s/'Active']                               = false/'Active']                               = true/g" $XLXCONFIG
+sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g" $XLXCONFIG
 #
 sed -i "s/your_email/$EMAIL/g" $XLXCONFIG
 sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
-sed -i "s/your_country/$CONTRIE/g" $XLXCONFIG
-sed -i "s/your_comment/$DESCRIPTION/g" $XLXCONFIG
 sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" $XLXCONFIG
 sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" $XLXCONFIG
 echo "Copying directives and reloading apache... "
