@@ -54,9 +54,8 @@ sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
    make
    make install
 #
-XLXINSTDIR=/opt/xlxd
-
-
+XLXINSTDIR=/opt/
+LOCAL_IP=$(ip a | grep inet | grep "eth0\|en" | awk '{print $2}' | tr '/' ' ' | awk '{print $1}')
 
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
@@ -121,3 +120,4 @@ echo "Be sure to thank the creators of xlxd for the ability to spin up          
 echo "your very own D-Star reflector.                                           "
 echo ""
 echo "------------------------------------------------------------------------------"
+sudo reboot
