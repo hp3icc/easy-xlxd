@@ -95,7 +95,7 @@ then
    echo "------------------------------------------------------------------------------"
    echo "It looks like everything compiled successfully. There is a 'xlxd' application file. "
 else
-   rm -r /root/reflector-install-files/xlxd
+   sudo rm -r /root/reflector-install-files/xlxd
    exit 0
 fi
 echo "------------------------------------------------------------------------------"
