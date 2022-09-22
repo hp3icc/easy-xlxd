@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo rm -r /root/reflector-install-files/
 sudo rm -r /root/xlxd
+sudo rm -r /opt/xlxd
 clear
 echo ""
 echo "XLX uses 3 digit numbers for its reflectors. For example: 032, 999, 099."
