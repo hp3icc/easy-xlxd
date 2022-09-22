@@ -6,7 +6,7 @@ XLXD MULTIMODE REFLECTOR 5 MODULE , YSF CONNECT MODULE B
 
 # Install
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/hp3icc/easy-xlxd/main/easy-xlxd.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/hp3icc/easy-xlxd/main/xlx-install.sh)"
     
     
 #
