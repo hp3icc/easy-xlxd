@@ -1,5 +1,4 @@
 #!/bin/bash
-rm -r /root/reflector-install-files/xlxd
 # A tool to install xlxd, your own D-Star Reflector.
 # For more information, please visit: https://n5amd.com
 #Lets begin-------------------------------------------------------------------------------------------------
@@ -96,11 +95,7 @@ then
    echo "------------------------------------------------------------------------------"
    echo "It looks like everything compiled successfully. There is a 'xlxd' application file. "
 else
-   echo ""
-   echo "UH OH!! I dont see the xlxd application file after attempting to compile."
-   echo "The output above is the only indication as to why it might have failed.  "
-   echo "Delete the directory '/root/reflector-install-files/xlxd' and run this script again. "
-   echo ""
+   rm -r /root/reflector-install-files/xlxd
    exit 0
 fi
 echo "------------------------------------------------------------------------------"
@@ -117,6 +112,12 @@ update-rc.d xlxd defaults
 # mv /etc/rc3.d/S01xlxd /etc/rc3.d/S10xlxd ##Disabling as its not really needed. 
 echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
+#
+sudo sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/Int./XLX Module/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/'Active']                               = false/'Active']                               = true/g"  /var/www/xlxd/pgs/config.inc.php
+sudo sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g"  /var/www/xlxd/pgs/config.inc.php
+#
 sed -i "s/your_email/$EMAIL/g" $XLXCONFIG
 sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
 sed -i "s/your_country/$CONTRIE/g" $XLXCONFIG
@@ -130,12 +131,6 @@ sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
 a2ensite $XLXDOMAIN
-#
-sudo sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/Int./XLX Module/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/'Active']                               = false/'Active']                               = true/g"  /var/www/xlxd/pgs/config.inc.php
-sudo sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g"  /var/www/xlxd/pgs/config.inc.php
-#
 service xlxd start
 systemctl restart apache2
 echo "------------------------------------------------------------------------------"
