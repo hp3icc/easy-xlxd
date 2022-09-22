@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo rm -r /root/reflector-install-files/xlxd
+sudo rm -r /root/reflector-install-files/
 sudo rm -r /root/xlxd
 # A tool to install xlxd, your own D-Star Reflector.
 # For more information, please visit: https://n5amd.com
