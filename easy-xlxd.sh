@@ -36,6 +36,12 @@ echo "--------------------------------------"
 read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com.  " XLXDOMAIN
 echo ""
 echo "--------------------------------------"
+read -p "What contrie your server?  " CONTRIE
+echo ""
+echo "--------------------------------------"
+read -p "description your server?  " DESCRIPTION
+echo ""
+echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
 echo ""
 echo "--------------------------------------"
@@ -112,6 +118,8 @@ echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_email/$EMAIL/g" $XLXCONFIG
 sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
+sed -i "s/your_country/$CONTRIE/g" $XLXCONFIG
+sed -i "s/your_comment/$DESCRIPTION/g" $XLXCONFIG
 sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" $XLXCONFIG
 sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" $XLXCONFIG
 echo "Copying directives and reloading apache... "
