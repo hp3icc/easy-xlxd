@@ -78,9 +78,10 @@ sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
 sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" $XLXCONFIG
 sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" $XLXCONFIG
 echo "Copying directives and reloading apache... "
-cp $DIRDIR/templates/apache.tbd.conf /etc/apache2/sites-available/$XLXDOMAIN.conf
-sed -i "s/apache.tbd/$XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
-sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/$XLXDOMAIN.conf
+sed -i "s/VirtualHost */VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
+#sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
+sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
 a2ensite $XLXDOMAIN
