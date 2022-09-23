@@ -46,7 +46,9 @@ sudo apt install php-mysql mariadb-server mariadb-client -y
 
 echo "------------------------------------------------------------------------------"
 cd /opt
-git clone https://github.com/LX3JL/xlxd.git
+#git clone https://github.com/LX3JL/xlxd.git
+git clone https://github.com/n7tae/new-xlxd.git
+mv new-xlxd xlxd
 cd xlxd/src/
 
    echo "------------------------------------------------------------------------------"
