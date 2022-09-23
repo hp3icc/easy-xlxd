@@ -1,6 +1,7 @@
 #!/bin/bash
 sudo rm -r /root/reflector-install-files/
 sudo rm -r /root/xlxd
+sudo rm -r /xlxd
 sudo rm -r /opt/xlxd
 sudo rm -r /var/www/xlxd
 clear
@@ -46,9 +47,7 @@ sudo apt install php-mysql mariadb-server mariadb-client -y
 
 echo "------------------------------------------------------------------------------"
 cd /opt
-#git clone https://github.com/LX3JL/xlxd.git
-git clone https://github.com/n7tae/new-xlxd.git
-mv new-xlxd xlxd
+git clone https://github.com/LX3JL/xlxd.git
 cd xlxd/src/
 
    echo "------------------------------------------------------------------------------"
@@ -58,6 +57,8 @@ sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES   
 sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        $YSFPOR/g"  main.h
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
+sudo sed -i "s/437000000/445525000/g"  main.h
+
 #
    make clean
    make
@@ -73,6 +74,7 @@ wget -O /xlxd/dmrid.dat http://xlxapi.rlx.lu/api/exportdmr.php
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
 mkdir /var/www/xlxd
+
 cp -R /opt/xlxd/dashboard/* /var/www/xlxd/
 cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP 127.0.0.1/g" /etc/init.d/xlxd
