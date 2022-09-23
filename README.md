@@ -1,6 +1,6 @@
 # easy-xlxd
 
-XLXD MULTIMODE REFLECTOR 1 MODULE , YSF CONNECT MODULE A
+XLXD MULTIMODE REFLECTOR , custom script, allows adjusting port number ysf reflector and number of modules
 
 #
 
