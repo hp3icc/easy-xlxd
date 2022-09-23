@@ -2,6 +2,7 @@
 sudo rm -r /root/reflector-install-files/
 sudo rm -r /root/xlxd
 sudo rm -r /opt/xlxd
+sudo rm -r /var/www/xlxd
 clear
 echo ""
 echo "XLX uses 3 digit numbers for its reflectors. For example: 032, 999, 099."
@@ -16,6 +17,12 @@ read -p "What contrie your server?  " CONTRIE
 echo ""
 echo "--------------------------------------"
 read -p "description your server?  " DESCRIPTION
+echo ""
+echo "--------------------------------------"
+read -p "# modules sample: 10  " NMODU
+echo ""
+echo "--------------------------------------"
+read -p "ysf port sample: 42000  " YSFPOR
 echo ""
 echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
@@ -45,8 +52,8 @@ cd xlxd/src/
    echo "------------------------------------------------------------------------------"
   
 #
-sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   1/g"  main.h
-#sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        420002/g"  main.h
+sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   $NMODU/g"  main.h
+sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        $YSFPOR/g"  main.h
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
 #
@@ -56,6 +63,7 @@ sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
 #
 XLXINSTDIR=/opt/
 LOCAL_IP=$(ip a | grep inet | grep "eth0\|en" | awk '{print $2}' | tr '/' ' ' | awk '{print $1}')
+INFREF=https://n5amd.com/digital-radio-how-tos/create-xlx-xrf-d-star-reflector/
 
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
@@ -70,8 +78,10 @@ XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 #
 sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" $XLXCONFIG
 sed -i "s/Int./XLX Module/g" $XLXCONFIG
+sed -i "s/Regional/XLX Module/g" $XLXCONFIG
+sed -i "s/National/XLX Module/g" $XLXCONFIG
 sed -i "s/'Active']                               = false/'Active']                               = true/g" $XLXCONFIG
-sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = 1/g" $XLXCONFIG
+sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" $XLXCONFIG
 #
 sed -i "s/your_email/$EMAIL/g" $XLXCONFIG
 sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
@@ -79,7 +89,7 @@ sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" $XLXCONFIG
 sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" $XLXCONFIG
 echo "Copying directives and reloading apache... "
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/$XLXDOMAIN.conf
-sed -i "s/VirtualHost */VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
+sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 #sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
