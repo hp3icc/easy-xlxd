@@ -80,17 +80,17 @@ update-rc.d xlxd defaults
 echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 #
-sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" $XLXCONFIG
-sed -i "s/Int./XLX Module/g" $XLXCONFIG
-sed -i "s/Regional/XLX Module/g" $XLXCONFIG
-sed -i "s/National/XLX Module/g" $XLXCONFIG
-sed -i "s/'Active']                               = false/'Active']                               = true/g" $XLXCONFIG
-sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" $XLXCONFIG
+sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/Int./XLX Module/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/Regional/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/National/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" /var/www/xlxd/pgs/config.inc.php
 #
-sed -i "s/your_email/$EMAIL/g" $XLXCONFIG
-sed -i "s/LX1IQ/$CALLSIGN/g" $XLXCONFIG
-sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" $XLXCONFIG
-sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" $XLXCONFIG
+sed -i "s/your_email/$EMAIL/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/LX1IQ/$CALLSIGN/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/\/tmp\/callinghome.php/\/xlxd\/callinghome.php/g" /var/www/xlxd/pgs/config.inc.php
 echo "Copying directives and reloading apache... "
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/$XLXDOMAIN.conf
 sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
@@ -99,6 +99,7 @@ sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
 a2ensite $XLXDOMAIN
+service xlxd stop
 service xlxd start
 systemctl restart apache2
 echo "------------------------------------------------------------------------------"
