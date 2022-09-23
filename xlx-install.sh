@@ -84,6 +84,8 @@ update-rc.d xlxd defaults
 echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 #
+sed -i "s/600/300/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/tmp/xlxd/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/Int./XLX Module/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/Regional/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
@@ -104,6 +106,7 @@ sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/
 sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
+chmod +777 /xlxd/
 a2ensite $XLXDOMAIN
 service xlxd stop
 service xlxd start
