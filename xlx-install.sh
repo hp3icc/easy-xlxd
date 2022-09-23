@@ -67,6 +67,7 @@ INFREF=https://n5amd.com/digital-radio-how-tos/create-xlx-xrf-d-star-reflector/
 
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
+mkdir /var/www/xlxd
 cp -R $XLXINSTDIR/xlxd/dashboard/* /var/www/xlxd/
 cp $XLXINSTDIR/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP 127.0.0.1/g" /etc/init.d/xlxd
