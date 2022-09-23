@@ -71,8 +71,8 @@ wget -O /xlxd/dmrid.dat http://xlxapi.rlx.lu/api/exportdmr.php
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
 mkdir /var/www/xlxd
-cp -R $XLXINSTDIR/xlxd/dashboard/* /var/www/xlxd/
-cp $XLXINSTDIR/xlxd/scripts/xlxd /etc/init.d/xlxd
+cp -R /opt/xlxd/dashboard/* /var/www/xlxd/
+cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP 127.0.0.1/g" /etc/init.d/xlxd
 update-rc.d xlxd defaults
 # Delaying startup time
@@ -86,6 +86,8 @@ sed -i "s/Regional/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/National/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/your_country/$CONTRIE/g" /var/www/xlxd/pgs/config.inc.php
+sed -i "s/your_comment/$DESCRIPTION/g" /var/www/xlxd/pgs/config.inc.php
 #
 sed -i "s/your_email/$EMAIL/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/LX1IQ/$CALLSIGN/g" /var/www/xlxd/pgs/config.inc.php
