@@ -57,7 +57,7 @@ sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES   
 sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        $YSFPOR/g"  main.h
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             'A'/g"  main.h
-sudo sed -i "s/437000000/445525000/g"  main.h
+sudo sed -i "s/437000000/434000000/g"  main.h
 
 #
    make clean
