@@ -19,10 +19,10 @@ echo "--------------------------------------"
 read -p "description your server?  " DESCRIPTION
 echo ""
 echo "--------------------------------------"
-read -p "# modules sample: 10  " NMODU
+read -p "# modules sample 10  :" NMODU
 echo ""
 echo "--------------------------------------"
-read -p "ysf port sample: 42000  " YSFPOR
+read -p "ysf port sample 42000  :" YSFPOR
 echo ""
 echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
