@@ -109,12 +109,16 @@ sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/
 sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
+sudo chmod +x opt/xlxd/ambed/run
 sudo chmod +777 /xlxd/
 sudo chmod +r /var/log/messages
 a2ensite $XLXDOMAIN
+sudo systemctl daemon-reload
 service xlxd stop
 service xlxd start
-systemctl restart apache2
+sudo systemctl restart apache2
+sudo systemctl enable apache2
+sudo systemctl enable xlxd
 echo "------------------------------------------------------------------------------"
 echo ""
 echo ""
