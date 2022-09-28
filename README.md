@@ -14,6 +14,10 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
 
 * reflector description xlxd
 
+* ambe ssrver address
+
+* ambe server port
+
 * routine is included that auto restarts reflector xlxd in case of internet loss
 
 #
