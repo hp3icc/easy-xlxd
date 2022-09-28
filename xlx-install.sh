@@ -23,16 +23,16 @@ echo "--------------------------------------"
 read -p "# modules sample 10  :" NMODU
 echo ""
 echo "--------------------------------------"
-read -p "# defaulf YSF module sample A  :" YSFMODU
+read -p "# defauld YSF module sample A  :" YSFMODU
 echo ""
 echo "--------------------------------------"
-read -p "ysf port sample 42000  :" YSFPOR
+read -p "ysf port sample defauld 42000  :" YSFPOR
 echo ""
 echo "--------------------------------------"
-read -p "ambe server addres sample 127.0.0.1  :" AMBIP
+read -p "ambe server addres sample defauld 127.0.0.1  :" AMBIP
 echo ""
 echo "--------------------------------------"
-read -p "ambe server port sample 10100  :" AMBPOR
+read -p "ambe server port sample defauld 10100  :" AMBPOR
 echo ""
 echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
