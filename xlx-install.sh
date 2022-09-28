@@ -109,17 +109,54 @@ sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/
 sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
+sudo chmod +x /etc/init.d/xlxd
 sudo chmod +x /opt/xlxd/ambed/run
 sudo chmod +x /xlxd/xlxd
 sudo chmod +777 /xlxd/
 sudo chmod +r /var/log/messages
 a2ensite $XLXDOMAIN
+#
+sudo cat > /usr/local/bin/rebooter-xlxd.sh <<- "EOF"
+#!/bin/bash
+#sleep 180
+while :
+do
+SERVER=noip.com
+ping -c1 ${SERVER} > /dev/null
+if [ $? != 0 ]
+then
+#
+sudo systemctl restart xlxd
+fi
+  sleep 60
+done
+EOF
+#
+sudo chmod +x /usr/local/bin/rebooter-xlxd.sh
+#
+cat > /lib/systemd/system/rebooter-xlxd.service  <<- "EOF"
+[Unit]
+Description=Rebooter
+#Wants=network-online.target
+#After=syslog.target network-online.target
+
+[Service]
+User=root
+ExecStart=/usr/local/bin/rebooter-xlxd.sh
+
+[Install]
+WantedBy=default.target
+EOF
+################################
 sudo systemctl daemon-reload
 service xlxd stop
 service xlxd start
 sudo systemctl restart apache2
 sudo systemctl enable apache2
 sudo systemctl enable xlxd
+sudo systemctl enable rebooter-xlxd.service
+sudo systemctl restart rebooter-xlxd.service
+#
 echo "------------------------------------------------------------------------------"
 echo ""
 echo ""
