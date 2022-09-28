@@ -29,6 +29,12 @@ echo "--------------------------------------"
 read -p "ysf port sample 42000  :" YSFPOR
 echo ""
 echo "--------------------------------------"
+read -p "ambe server addres sample 127.0.0.1  :" AMBIP
+echo ""
+echo "--------------------------------------"
+read -p "ambe server port sample 10100  :" AMBPOR
+echo ""
+echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
 echo ""
 echo "--------------------------------------"
@@ -61,6 +67,7 @@ sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT     
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             '$YSFMODU'/g"  main.h
 sudo sed -i "s/437000000/434000000/g"  main.h
+sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT                 $AMBPOR/g"  main.h
 
 #
    make clean
@@ -80,7 +87,7 @@ mkdir /var/www/xlxd
 
 cp -r /opt/xlxd/dashboard/* /var/www/xlxd/
 cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
-sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP 127.0.0.1/g" /etc/init.d/xlxd
+sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP $AMBIP/g" /etc/init.d/xlxd
 update-rc.d xlxd defaults
 # Delaying startup time
 # mv /etc/rc3.d/S01xlxd /etc/rc3.d/S10xlxd ##Disabling as its not really needed. 
