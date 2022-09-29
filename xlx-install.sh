@@ -45,14 +45,46 @@ echo "--------------------------------------------------------------------------
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
 #
-sudo apt install git
-sudo apt install apache2 php5
-sudo apt install build-essential
-sudo apt install g++
+#sudo apt install git
+#sudo apt install apache2 php5
+#sudo apt install build-essential
+#sudo apt install g++
 # the following is only needed for XLX, not for XRF
-sudo apt install libmariadb-dev-compat -y
+#sudo apt install libmariadb-dev-compat -y
 # the following is needed if you plan on supporting local YSF frequency registration database
-sudo apt install php-mysql mariadb-server mariadb-client -y
+#sudo apt install php-mysql mariadb-server mariadb-client -y
+###########################################################
+WHO=$(whoami)
+if [ "$WHO" != "root" ]
+then
+  echo ""
+  echo "You Must be root to run this script!!"
+  exit 0
+fi
+if [ ! -e "/etc/debian_version" ]
+then
+  echo ""
+  echo "This script is only tested in Debian 9 and x64 cpu Arch. "
+  exit 0
+fi
+
+DEP="git build-essential apache2 php libapache2-mod-php php7.0-mbstring"
+DEP2="git build-essential apache2 php libapache2-mod-php php7.3-mbstring"
+DEP3="git build-essential apache2 php libapache2-mod-php php7.4-mbstring"
+VERSION=$(sed 's/\..*//' /etc/debian_version)
+
+if [ $VERSION = 9 ]
+then
+    apt-get -y install $DEP
+    a2enmod php7.0
+elif [ $VERSION = 10 ]
+then
+    apt-get -y install $DEP2
+elif [ $VERSION = 11 ]
+then
+    apt-get -y install $DEP3
+fi
+###################################################
 
 echo "------------------------------------------------------------------------------"
 cd /opt
