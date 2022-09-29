@@ -44,15 +44,6 @@ echo ""
 echo "------------------------------------------------------------------------------"
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
-#
-#sudo apt install git
-#sudo apt install apache2 php5
-#sudo apt install build-essential
-#sudo apt install g++
-# the following is only needed for XLX, not for XRF
-#sudo apt install libmariadb-dev-compat -y
-# the following is needed if you plan on supporting local YSF frequency registration database
-#sudo apt install php-mysql mariadb-server mariadb-client -y
 ###########################################################
 WHO=$(whoami)
 if [ "$WHO" != "root" ]
