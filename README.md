@@ -2,6 +2,8 @@
 
 XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an easy way:
 
+* style dashboard select clasic or new
+
 * port number ysf reflector
 
 * number of enabled modules
