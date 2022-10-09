@@ -14,6 +14,9 @@ echo "--------------------------------------"
 read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com.  " XLXDOMAIN
 echo ""
 echo "--------------------------------------"
+read -p "select dashboard style 1 or 2   :" DASH
+echo ""
+echo "--------------------------------------"
 read -p "What contrie your server?  " CONTRIE
 echo ""
 echo "--------------------------------------"
@@ -33,9 +36,6 @@ read -p "ambe server addres sample defauld 127.0.0.1  :" AMBIP
 echo ""
 echo "--------------------------------------"
 read -p "ambe server port sample defauld 10100  :" AMBPOR
-echo ""
-echo "--------------------------------------"
-read -p "select dashboard style 1 or 2   :" DASH
 echo ""
 echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
@@ -110,6 +110,7 @@ wget -O /xlxd/dmrid.dat http://xlxapi.rlx.lu/api/exportdmr.php
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
 mkdir /var/www/xlxd
+#
 if [ $DASH = 1 ]
 then
        cp -r /opt/xlxd/dashboard/* /var/www/xlxd/
@@ -117,7 +118,7 @@ elif [ $DASH = 2 ]
 then
     cp -r /opt/xlxd/dashboard2/* /var/www/xlxd/
 fi
-#cp -r /opt/xlxd/dashboard/* /var/www/xlxd/
+#
 cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP $AMBIP/g" /etc/init.d/xlxd
 update-rc.d xlxd defaults
