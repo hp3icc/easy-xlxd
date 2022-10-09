@@ -119,6 +119,7 @@ then
     cp -r /opt/xlxd/dashboard2/* /var/www/xlxd/
 fi
 #
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1c60nJZGBHRLMxFsBI5SZRwTJXwnSSGZN' -O /var/www/xlxd/favicon.ico
 cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP $AMBIP/g" /etc/init.d/xlxd
 update-rc.d xlxd defaults
