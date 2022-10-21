@@ -33,9 +33,9 @@ echo "--------------------------------------"
 read -p "ambe server addres sample defauld 127.0.0.1  :" AMBIP
 echo ""
 echo "--------------------------------------"
-# read -p "ambe server port sample defauld 10100  :" AMBPOR
-# echo ""
-# echo "--------------------------------------"
+read -p "ambe server port sample defauld 10100  :" AMBPOR
+echo ""
+echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
 echo ""
 echo "--------------------------------------"
@@ -111,12 +111,12 @@ cd xlxd/src/
    echo "------------------------------------------------------------------------------"
   
 #
-sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   $NMODU/g"  main.h
-sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        $YSFPOR/g"  main.h
-sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
-sudo sed -i "s/MODULE             'B'/MODULE             '$YSFMODU'/g"  main.h
-sudo sed -i "s/437000000/434000000/g"  main.h
-# sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT                 $AMBPOR/g"  main.h
+sudo sed -i "s/define NB_OF_MODULES                   10/define NB_OF_MODULES                   $NMODU/g"  /opt/xlxd/src/main.h
+sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT                        $YSFPOR/g"  /opt/xlxd/src/main.h
+sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  /opt/xlxd/src/main.h
+sudo sed -i "s/MODULE             'B'/MODULE             '$YSFMODU'/g"  /opt/xlxd/src/main.h
+sudo sed -i "s/437000000/434000000/g"  /opt/xlxd/src/main.h
+sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT                 $AMBPOR/g"  /opt/xlxd/src/main.h
 
 #
    make clean
