@@ -1,10 +1,8 @@
 #!/bin/bash
-sudo rm -r /root/reflector-install-files/
-sudo rm -r /root/xlxd
-sudo rm -r /xlxd
-sudo rm -r /opt/xlxd
-sudo rm -r /var/www/xlxd
 clear
+read -p "press N for new XLXD installation, or R to refresh and modify current installation  :" INSTA
+echo ""
+echo "--------------------------------------"
 echo ""
 echo "XLX uses 3 digit numbers for its reflectors. For example: 032, 999, 099."
 read -p "What 3 digit XRF number will you be using?  " XRFDIGIT
@@ -35,9 +33,9 @@ echo "--------------------------------------"
 read -p "ambe server addres sample defauld 127.0.0.1  :" AMBIP
 echo ""
 echo "--------------------------------------"
-read -p "ambe server port sample defauld 10100  :" AMBPOR
-echo ""
-echo "--------------------------------------"
+# read -p "ambe server port sample defauld 10100  :" AMBPOR
+# echo ""
+# echo "--------------------------------------"
 read -p "What E-Mail address can your users send questions to?  " EMAIL
 echo ""
 echo "--------------------------------------"
@@ -48,6 +46,38 @@ echo "--------------------------------------------------------------------------
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
 ###########################################################
+if [ $INSTA = N ]
+then
+       # 
+elif [ $INSTA = R ]
+then
+    cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
+    cp /xlxd/xlxd.terminal /tmp/xlxd.terminal
+    cp /xlxd/callinghome.php /tmp/callinghome.php
+    cp /xlxd/xlxd.interlink  /tmp/xlxd.interlink
+    cp /xlxd/xlxd.whitelist /tmp/xlxd.whitelist
+    service xlxd stop
+fi
+#
+if [ $INSTA = n ]
+then
+      #
+elif [ $INSTA = r ]
+then
+    cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
+    cp /xlxd/xlxd.terminal /tmp/xlxd.terminal
+    cp /xlxd/callinghome.php /tmp/callinghome.php
+    cp /xlxd/xlxd.interlink  /tmp/xlxd.interlink
+    cp /xlxd/xlxd.whitelist /tmp/xlxd.whitelist
+    service xlxd stop
+fi
+#
+sudo rm -r /root/reflector-install-files/
+sudo rm -r /root/xlxd
+sudo rm -r /xlxd
+sudo rm -r /opt/xlxd
+sudo rm -r /var/www/xlxd
+#
 WHO=$(whoami)
 if [ "$WHO" != "root" ]
 then
@@ -188,6 +218,31 @@ ExecStart=/usr/local/bin/rebooter-xlxd.sh
 [Install]
 WantedBy=default.target
 EOF
+#
+if [ $INSTA = N ]
+then
+    #
+    
+elif [ $INSTA = R ]
+then
+   cp /tmp/xlxd.blacklist /xlxd/xlxd.blacklist
+   cp /tmp/xlxd.terminal /xlxd/xlxd.terminal
+   cp /tmp/callinghome.php /xlxd/callinghome.php
+   cp /tmp/xlxd.interlink /xlxd/xlxd.interlink
+   cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
+fi
+#
+if [ $INSTA = n ]
+then
+       # 
+elif [ $INSTA = r ]
+then
+    cp /tmp/xlxd.blacklist /xlxd/xlxd.blacklist
+    cp /tmp/xlxd.terminal /xlxd/xlxd.terminal
+    cp /tmp/callinghome.php /xlxd/callinghome.php
+    cp /tmp/xlxd.interlink /xlxd/xlxd.interlink
+    cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
+fi
 ################################
 sudo systemctl daemon-reload
 service xlxd stop
