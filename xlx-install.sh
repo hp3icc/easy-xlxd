@@ -46,10 +46,7 @@ echo "--------------------------------------------------------------------------
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
 ###########################################################
-if [ $INSTA = N ]
-then
-       # 
-elif [ $INSTA = R ]
+if [ $INSTA = R ]
 then
     cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
     cp /xlxd/xlxd.terminal /tmp/xlxd.terminal
@@ -58,11 +55,7 @@ then
     cp /xlxd/xlxd.whitelist /tmp/xlxd.whitelist
     service xlxd stop
 fi
-#
-if [ $INSTA = n ]
-then
-      #
-elif [ $INSTA = r ]
+if [ $INSTA = r ]
 then
     cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
     cp /xlxd/xlxd.terminal /tmp/xlxd.terminal
@@ -219,11 +212,7 @@ ExecStart=/usr/local/bin/rebooter-xlxd.sh
 WantedBy=default.target
 EOF
 #
-if [ $INSTA = N ]
-then
-    #
-    
-elif [ $INSTA = R ]
+if [ $INSTA = R ]
 then
    cp /tmp/xlxd.blacklist /xlxd/xlxd.blacklist
    cp /tmp/xlxd.terminal /xlxd/xlxd.terminal
@@ -231,11 +220,7 @@ then
    cp /tmp/xlxd.interlink /xlxd/xlxd.interlink
    cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
 fi
-#
-if [ $INSTA = n ]
-then
-       # 
-elif [ $INSTA = r ]
+if [ $INSTA = r ]
 then
     cp /tmp/xlxd.blacklist /xlxd/xlxd.blacklist
     cp /tmp/xlxd.terminal /xlxd/xlxd.terminal
