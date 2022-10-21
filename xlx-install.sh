@@ -123,7 +123,7 @@ sudo sed -i "s/define YSF_PORT                        42000/define YSF_PORT     
 sudo sed -i "s/define YSF_AUTOLINK_ENABLE             0/define YSF_AUTOLINK_ENABLE             1/g"  main.h
 sudo sed -i "s/MODULE             'B'/MODULE             '$YSFMODU'/g"  main.h
 sudo sed -i "s/437000000/434000000/g"  main.h
-sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT                 $AMBPOR/g"  main.h
+# sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT                 $AMBPOR/g"  main.h
 
 #
    make clean
