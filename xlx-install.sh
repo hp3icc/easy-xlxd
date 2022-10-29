@@ -228,7 +228,9 @@ then
     cp /tmp/xlxd.interlink /xlxd/xlxd.interlink
     cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
 fi
-################################
+#
+wget --no-check-certificate -r 'https://docs.google.com/uc?export=download&id=1c60nJZGBHRLMxFsBI5SZRwTJXwnSSGZN' -O /var/www/xlxd/favicon.ico
+###############################
 sudo systemctl daemon-reload
 service xlxd stop
 service xlxd start
