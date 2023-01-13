@@ -142,7 +142,7 @@ then
     cp -r /opt/xlxd/dashboard2/* /var/www/xlxd/
 fi
 #
-sudo sed -i "s/mailto.*/mailto:<?php echo $PageOptions['ContactEmail']; ?>\"><?php echo \$PageOptions['ContactEmail']; ?><\/a> <\/div> <p><a title=\"Raspbian Proyect by HP3ICC © <?php \$cdate=date(\"Y\"); if (\$cdate > \"2018\") {\$cdate=\"2018-\".date(\"Y\");} echo \$cdate; ?>\" target=\"_blank\" href=https:\/\/github.com\/hp3icc\/easy-xlxd\/>Proyect: easy-xlxd<\/a>/"  /var/www/xlxd/index.php 
+sudo sed -i "s/mailto:<?php echo.*/mailto:<?php echo \$PageOptions['ContactEmail']; ?>\"><?php echo \$PageOptions['ContactEmail']; ?><\/a> <\/div> <p><a title=\"Raspbian Proyect by HP3ICC © <?php \$cdate=date(\"Y\"); if (\$cdate > \"2018\") {\$cdate=\"2018-\".date(\"Y\");} echo \$cdate; ?>\" target=\"_blank\" href=https:\/\/github.com\/hp3icc\/easy-xlxd\/>Proyect: easy-xlxd<\/a>/"  /var/www/xlxd/index.php   
 sudo sed -i "s/Reflector Dashboard/Reflector Dashboard \/ $DESCRIPTION/g"  /var/www/xlxd/index.php
 cp /opt/xlxd/scripts/xlxd /etc/init.d/xlxd
 sed -i "s/XLX999 192.168.1.240 127.0.0.1/$XRFNUM $LOCAL_IP $AMBIP/g" /etc/init.d/xlxd
