@@ -105,7 +105,7 @@ else
  echo "file not found"
 
 fi
-
+apt update
 #
 WHO=$(whoami)
 if [ "$WHO" != "root" ]
