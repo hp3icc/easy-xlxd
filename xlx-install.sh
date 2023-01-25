@@ -65,6 +65,22 @@ then
     service xlxd stop
 fi
 #
+if [ -f "/etc/init.d/xlxd" ];
+then
+   service xlxd stop
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+if [ -f "/etc/init.d/xlxd" ];
+then
+   rm /etc/init.d/xlxd
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
 if [ -d "/root/reflector-install-files" ];
 then
    rm -r /root/reflector-install-files/
