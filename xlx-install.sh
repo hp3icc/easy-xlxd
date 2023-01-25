@@ -207,7 +207,7 @@ echo "Copying directives and reloading apache... "
 cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/$XLXDOMAIN.conf
 sed -i "s/VirtualHost \*/VirtualHost $XLXDOMAIN/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 #sed -i "s/ysf-xlxd/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
-sed -i "s/html/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
+sudo sed -i "s/www\/.*/www\/xlxd/g" /etc/apache2/sites-available/$XLXDOMAIN.conf
 chown -R www-data:www-data /var/www/xlxd/
 chown -R www-data:www-data /xlxd/
 sudo chmod +x /etc/init.d/xlxd
@@ -216,6 +216,8 @@ sudo chmod +x /xlxd/xlxd
 sudo chmod +777 /xlxd/
 sudo chmod +r /var/log/messages
 a2ensite $XLXDOMAIN
+sudo sed -i "s/www\/.*/www\/xlxd/g" /etc/apache2/sites-available/000-default.conf
+a2ensite 000-default
 #
 sudo cat > /usr/local/bin/rebooter-xlxd.sh <<- "EOF"
 #!/bin/bash
