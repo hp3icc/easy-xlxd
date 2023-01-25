@@ -65,11 +65,47 @@ then
     service xlxd stop
 fi
 #
-sudo rm -r /root/reflector-install-files/
-sudo rm -r /root/xlxd
-sudo rm -r /xlxd
-sudo rm -r /opt/xlxd
-sudo rm -r /var/www/xlxd
+if [ -d "/root/reflector-install-files" ];
+then
+   rm -r /root/reflector-install-files/
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+if [ -d "/root/xlxd" ];
+then
+   rm -r /root/xlxd/
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+if [ -d "/xlxd" ];
+then
+   rm -r /xlxd/
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+if [ -d "/opt/xlxd" ];
+then
+   rm -r /opt/xlxd/
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+if [ -d "/var/www/xlxd" ];
+then
+   rm -r /var/www/xlxd/
+ #echo "found file"
+else
+ echo "file not found"
+
+fi
+
 #
 WHO=$(whoami)
 if [ "$WHO" != "root" ]
