@@ -26,6 +26,10 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
 
 # Install
 
+    apt-get update
+    
+    apt-get install curl sudo -y
+    
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/hp3icc/easy-xlxd/main/xlx-install.sh)"
     
    
