@@ -336,8 +336,8 @@ service xlxd start
 sudo systemctl restart apache2
 sudo systemctl enable apache2
 sudo systemctl enable xlxd
-#sudo systemctl enable rebooter-xlxd.service
-#sudo systemctl restart rebooter-xlxd.service
+sudo systemctl enable rebooter-xlxd.service
+sudo systemctl restart rebooter-xlxd.service
 #
 echo "------------------------------------------------------------------------------"
 echo ""
