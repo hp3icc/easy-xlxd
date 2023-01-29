@@ -155,6 +155,7 @@ then
 fi
 ###################################################
 
+
 echo "------------------------------------------------------------------------------"
 cd /opt
 git clone https://github.com/LX3JL/xlxd.git
@@ -192,6 +193,9 @@ then
 elif [ $DASH = 2 ]
 then
     cp -r /opt/xlxd/dashboard2/* /var/www/xlxd/
+elif echo "$DASH" &> /dev/null
+then
+    cp -r /opt/xlxd/dashboard/* /var/www/xlxd/
 fi
 #
 sudo sed -i "s/mailto:<?php echo.*/mailto:<?php echo \$PageOptions['ContactEmail']; ?>\"><?php echo \$PageOptions['ContactEmail']; ?><\/a> <\/div> <p><a title=\"Raspbian Proyect by HP3ICC © <?php \$cdate=date(\"Y\"); if (\$cdate > \"2018\") {\$cdate=\"2018-\".date(\"Y\");} echo \$cdate; ?>\" target=\"_blank\" href=https:\/\/github.com\/hp3icc\/easy-xlxd\/>Proyect: easy-xlxd<\/a>/"  /var/www/xlxd/index.php   
