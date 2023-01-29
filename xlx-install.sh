@@ -24,7 +24,7 @@ echo "--------------------------------------"
 read -p "# modules sample 10  :" NMODU
 echo ""
 echo "--------------------------------------"
-read -p "# defauld YSF module sample A  :" YSFMODU
+read -p "# defauld YSF module sample B  :" YSFMODU
 echo ""
 echo "--------------------------------------"
 read -p "ysf port sample defauld 42000  :" YSFPOR
@@ -154,8 +154,52 @@ then
     apt-get -y install $DEP3
 fi
 ###################################################
+if [ -z "$XRFDIGIT" ]; 
+then XRFDIGIT=000; 
 
+fi
+XRFNUM=XLX$XRFDIGIT
+if [ -z "$XLXDOMAIN" ]; 
+then XLXDOMAIN=localhost; 
 
+fi
+if [ -z "$CONTRIE" ]; 
+then CONTRIE=Test; 
+
+fi
+if [ -z "$DESCRIPTION" ]; 
+then DESCRIPTION=XLXD Reflector Test; 
+
+fi
+if [ -z "$NMODU" ]; 
+then NMODU=10; 
+
+fi
+if [ -z "$YSFMODU" ]; 
+then YSFMODU=B; 
+
+fi
+if [ -z "$YSFPOR" ]; 
+then YSFPOR=42000; 
+
+fi
+if [ -z "$AMBIP" ]; 
+then AMBIP=127.0.0.1; 
+
+fi
+if [ -z "$AMBPOR" ]; 
+then AMBPOR=10100; 
+
+fi
+if [ -z "$EMAIL" ]; 
+then EMAIL=Put you email; 
+
+fi
+if [ -z "$CALLSIGN" ]; 
+then CALLSIGN=LX1IQ; 
+
+fi
+###################################################
 echo "------------------------------------------------------------------------------"
 cd /opt
 git clone https://github.com/LX3JL/xlxd.git
@@ -218,7 +262,7 @@ sed -i "s/'Active']                               = false/'Active']             
 sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_country/$CONTRIE/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_comment/$DESCRIPTION/g" /var/www/xlxd/pgs/config.inc.php
-#
+sed -i "s/'CustomTXT']                            = ''/'CustomTXT']                            = '$DESCRIPTION'/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_email/$EMAIL/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/LX1IQ/$CALLSIGN/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/http:\/\/your_dashboard/http:\/\/$XLXDOMAIN/g" /var/www/xlxd/pgs/config.inc.php
@@ -239,29 +283,25 @@ a2ensite $XLXDOMAIN
 sudo sed -i "s/www\/.*/www\/xlxd/g" /etc/apache2/sites-available/000-default.conf
 a2ensite 000-default
 #
+##########################
 sudo cat > /usr/local/bin/rebooter-xlxd.sh <<- "EOF"
 #!/bin/bash
-#sleep 180
+#sleep 30
 while :
 do
-SERVER=noip.com
-ping -c1 ${SERVER} > /dev/null
-if [ $? != 0 ]
-then
-#
-sudo systemctl restart xlxd
+if systemctl status xlxd.service |grep Error >/dev/null 2>&1
+then service xlxd restart
+
 fi
-  sleep 60
+  sleep 30
 done
 EOF
-#
-sudo chmod +x /usr/local/bin/rebooter-xlxd.sh
+chmod +x /usr/local/bin/rebooter-xlxd.sh
+######################################
 #
 cat > /lib/systemd/system/rebooter-xlxd.service  <<- "EOF"
 [Unit]
-Description=Rebooter
-#Wants=network-online.target
-#After=syslog.target network-online.target
+Description=Rebooter-xlxd
 
 [Service]
 User=root
