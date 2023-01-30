@@ -59,7 +59,7 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
 
 #
 
-# credit
+# Credits
 
  * original scrip n5amd without modifications by hp3icc :
 
