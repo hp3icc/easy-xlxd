@@ -37,8 +37,30 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
  
 #
 
+ # Location files config
+ 
+  * Main Config file:
+ 
+  /var/www/xlxd/pgs/config.inc.php
+  
+  * interlink & other files :  
+   
+  /xlxd/  
+   
+#
+  
+ # Location Dashboard Files
+ 
+ /var/www/xlxd/
+
+#
+
 # credit
 
-original scrip n5amd mod by hp3icc
+ * original scrip n5amd without modifications by hp3icc :
 
-https://github.com/n5amd/xlxd-debian-installer
+ https://github.com/n5amd/xlxd-debian-installer
+
+ * Source xlxd files :
+ 
+ https://github.com/LX3JL/xlxd
