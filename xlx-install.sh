@@ -5,44 +5,44 @@ echo ""
 echo "--------------------------------------"
 echo ""
 echo "XLX uses 3 digit numbers for its reflectors. For example: 032, 999, 099."
-read -p "What 3 digit XRF number will you be using?  " XRFDIGIT
+read -p "What 3 digit XRF number will you be using?   :" XRFDIGIT
 XRFNUM=XLX$XRFDIGIT
 echo ""
 echo "--------------------------------------"
-read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com  " XLXDOMAIN
+read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com   :" XLXDOMAIN
 echo ""
 echo "--------------------------------------"
 read -p "select dashboard style 1 or 2   :" DASH
 echo ""
 echo "--------------------------------------"
-read -p "What contrie your server?  " CONTRIE
+read -p "What contrie your server?   :" CONTRIE
 echo ""
 echo "--------------------------------------"
-read -p "description your server?  " DESCRIPTION
+read -p "description your server?   :" DESCRIPTION
 echo ""
 echo "--------------------------------------"
-read -p "# modules sample 10  :" NMODU
+read -p "# modules sample 10   :" NMODU
 echo ""
 echo "--------------------------------------"
-read -p "# defauld YSF module sample B  :" YSFMODU
+read -p "# defauld YSF module sample B   :" YSFMODU
 echo ""
 echo "--------------------------------------"
-read -p "ysf port sample defauld 42000  :" YSFPOR
+read -p "ysf port sample defauld 42000   :" YSFPOR
 echo ""
 echo "--------------------------------------"
-read -p "ambe server addres sample defauld 127.0.0.1  :" AMBIP
+read -p "ambe server addres sample defauld 127.0.0.1   :" AMBIP
 echo ""
 echo "--------------------------------------"
-read -p "ambe server port sample defauld 10100  :" AMBPOR
+read -p "ambe server port sample defauld 10100   :" AMBPOR
 echo ""
 echo "--------------------------------------"
-read -p "What E-Mail address can your users send questions to?  " EMAIL
+read -p "What E-Mail address can your users send questions to?   :" EMAIL
 echo ""
 echo "--------------------------------------"
-read -p "What is the admins callsign?  " CALLSIGN
+read -p "What is the admins callsign?   :" CALLSIGN
 echo ""
 echo "--------------------------------------"
-read -p "Activate XLXD Reflector? select Y or N  : " ACTIXLX
+read -p "Activate XLXD Reflector? select Y or N   : " ACTIXLX
 echo ""
 echo "--------------------------------------"
 echo ""
