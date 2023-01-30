@@ -156,7 +156,7 @@ then CONTRIE=Test
 
 fi
 if [ -z "$DESCRIPTION" ]
-then DESCRIPTION=XLXD Reflector Test
+then DESCRIPTION=XLXD_Reflector_Test
 
 fi
 if [ -z "$NMODU" ]
@@ -180,7 +180,7 @@ then AMBPOR=10100
 
 fi
 if [ -z "$EMAIL" ]
-then EMAIL=Put you email
+then EMAIL=Put_you_email
 
 fi
 if [ -z "$CALLSIGN" ]
