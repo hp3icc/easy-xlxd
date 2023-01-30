@@ -219,6 +219,10 @@ echo "--------------------------------------------------------------------------
 echo "Copying web dashboard files and updating init script... "
 mkdir /var/www/xlxd
 #
+ if [ -z "$DASH" ]
+then DASH=1 
+
+fi   
 if [ $DASH = 1 ]
 then
        cp -r /opt/xlxd/dashboard/* /var/www/xlxd/
