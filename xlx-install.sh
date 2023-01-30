@@ -46,8 +46,8 @@ echo "--------------------------------------------------------------------------
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
 ###########################################################
-if [ -z "$INSTA" ]; 
-then INSTA=0; 
+if [ -z "$INSTA" ]
+then INSTA=0
 fi
 if [ $INSTA = R ]
 then
@@ -67,60 +67,46 @@ then
     service xlxd stop
 fi
 #
-if [ -f "/etc/init.d/xlxd" ];
+if [ -f "/etc/init.d/xlxd" ]
 then
    service xlxd stop
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -f "/etc/init.d/xlxd" ];
+if [ -f "/etc/init.d/xlxd" ]
 then
    rm /etc/init.d/xlxd
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -d "/root/reflector-install-files" ];
+if [ -d "/root/reflector-install-files" ]
 then
    rm -r /root/reflector-install-files/
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -d "/root/xlxd" ];
+if [ -d "/root/xlxd" ]
 then
    rm -r /root/xlxd/
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -d "/xlxd" ];
+if [ -d "/xlxd" ]
 then
    rm -r /xlxd/
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -d "/opt/xlxd" ];
+if [ -d "/opt/xlxd" ]
 then
    rm -r /opt/xlxd/
  #echo "found file"
-else
- echo "file not found"
 
 fi
-if [ -d "/var/www/xlxd" ];
+if [ -d "/var/www/xlxd" ]
 then
    rm -r /var/www/xlxd/
  #echo "found file"
-else
- echo "file not found"
 
 fi
 apt update
@@ -156,49 +142,49 @@ then
     apt-get -y install $DEP3
 fi
 ###################################################
-if [ -z "$XRFDIGIT" ]; 
-then XRFDIGIT=000; 
+if [ -z "$XRFDIGIT" ] 
+then XRFDIGIT=000
 
 fi
 XRFNUM=XLX$XRFDIGIT
-if [ -z "$XLXDOMAIN" ]; 
-then XLXDOMAIN=localhost; 
+if [ -z "$XLXDOMAIN" ]
+then XLXDOMAIN=localhost
 
 fi
-if [ -z "$CONTRIE" ]; 
-then CONTRIE=Test; 
+if [ -z "$CONTRIE" ]
+then CONTRIE=Test
 
 fi
-if [ -z "$DESCRIPTION" ]; 
-then DESCRIPTION=XLXD Reflector Test; 
+if [ -z "$DESCRIPTION" ]
+then DESCRIPTION=XLXD Reflector Test
 
 fi
-if [ -z "$NMODU" ]; 
-then NMODU=10; 
+if [ -z "$NMODU" ]
+then NMODU=10
 
 fi
-if [ -z "$YSFMODU" ]; 
-then YSFMODU=B; 
+if [ -z "$YSFMODU" ]
+then YSFMODU=B
 
 fi
-if [ -z "$YSFPOR" ]; 
-then YSFPOR=42000; 
+if [ -z "$YSFPOR" ]
+then YSFPOR=42000
 
 fi
-if [ -z "$AMBIP" ]; 
-then AMBIP=127.0.0.1; 
+if [ -z "$AMBIP" ]
+then AMBIP=127.0.0.1
 
 fi
-if [ -z "$AMBPOR" ]; 
-then AMBPOR=10100; 
+if [ -z "$AMBPOR" ]
+then AMBPOR=10100
 
 fi
-if [ -z "$EMAIL" ]; 
-then EMAIL=Put you email; 
+if [ -z "$EMAIL" ]
+then EMAIL=Put you email
 
 fi
-if [ -z "$CALLSIGN" ]; 
-then CALLSIGN=LX1IQ; 
+if [ -z "$CALLSIGN" ]
+then CALLSIGN=LX1IQ
 
 fi
 ###################################################
