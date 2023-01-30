@@ -212,10 +212,10 @@ sudo sed -i "s/TRANSCODER_PORT                 10100/TRANSCODER_PORT            
 XLXINSTDIR=/opt/
 LOCAL_IP=$(ip a | grep inet | grep "eth0\|en" | awk '{print $2}' | tr '/' ' ' | awk '{print $1}')
 INFREF=https://n5amd.com/digital-radio-how-tos/create-xlx-xrf-d-star-reflector/
-cho "------------------------------------------------------------------------------"
+echo "------------------------------------------------------------------------------"
 echo "Getting the DMRID.dat file... "
 echo "------------------------------------------------------------------------------"
-wget -O /xlxd/dmrid.dat http://xlxapi.rlx.lu/api/exportdmr.php
+wget http://xlxapi.rlx.lu/api/exportdmr.php -O /xlxd/dmrid.dat
 echo "------------------------------------------------------------------------------"
 echo "Copying web dashboard files and updating init script... "
 mkdir /var/www/xlxd
@@ -332,7 +332,7 @@ then
     cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
 fi
 #
-wget --no-check-certificate -r 'https://docs.google.com/uc?export=download&id=1c60nJZGBHRLMxFsBI5SZRwTJXwnSSGZN' -O /var/www/xlxd/favicon.ico
+wget -q --no-check-certificate -r 'https://docs.google.com/uc?export=download&id=1c60nJZGBHRLMxFsBI5SZRwTJXwnSSGZN' -O /var/www/xlxd/favicon.ico
 ###############################
 sudo systemctl daemon-reload
 service xlxd stop
