@@ -256,7 +256,7 @@ fi
 if [ $ACTIXLX = Y ]
   then
   sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php
-elif [ $ACTIXLX = Y ]
+elif [ $ACTIXLX = y ]
   then
   sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php 
 fi
