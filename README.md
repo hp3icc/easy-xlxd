@@ -39,9 +39,13 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
 
  # Location files config
  
-  * Main Config file:
+  * Main Config file :
  
   /var/www/xlxd/pgs/config.inc.php
+  
+  * Service and IP :
+  
+  /etc/init.d/xlxd
   
   * interlink & other files :  
    
