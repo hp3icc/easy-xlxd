@@ -41,6 +41,11 @@ echo ""
 echo "--------------------------------------"
 read -p "What is the admins callsign?  " CALLSIGN
 echo ""
+echo "--------------------------------------"
+read -p "Activate XLXD Reflector? select Y or N  : " ACTIXLX
+echo ""
+echo "--------------------------------------"
+echo ""
 echo ""
 echo "------------------------------------------------------------------------------"
 echo "Making install directories and installing dependicies...."
@@ -244,13 +249,24 @@ update-rc.d xlxd defaults
 echo "Updating XLXD Config file... "
 XLXCONFIG=/var/www/xlxd/pgs/config.inc.php
 #
+if [ -z "$ACTIXLX" ]; 
+then ACTIXLX=N; 
+
+fi   
+if [ $ACTIXLX = Y ]
+  then
+  sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php
+elif [ $ACTIXLX = Y ]
+  then
+  sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php 
+fi
+#
 sed -i "s/600/300/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/tmp/xlxd/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/'ShowFullIP'/'ShowLast2ByteOfIP'/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/Int./XLX Module/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/Regional/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/National/XLX Module/g" /var/www/xlxd/pgs/config.inc.php
-sed -i "s/'Active']                               = false/'Active']                               = true/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/NumberOfModules']                      = 10/NumberOfModules']                      = $NMODU/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_country/$CONTRIE/g" /var/www/xlxd/pgs/config.inc.php
 sed -i "s/your_comment/$DESCRIPTION/g" /var/www/xlxd/pgs/config.inc.php
