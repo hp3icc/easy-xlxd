@@ -153,7 +153,7 @@ then XRFDIGIT=000
 fi
 XRFNUM=XLX$XRFDIGIT
 if [ -z "$XLXDOMAIN" ]
-then XLXDOMAIN=localhost
+then XLXDOMAIN=$(wget -qO- ifconfig.co/ip)
 
 fi
 if [ -z "$CONTRIE" ]
