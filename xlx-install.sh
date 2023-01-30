@@ -9,7 +9,7 @@ read -p "What 3 digit XRF number will you be using?  " XRFDIGIT
 XRFNUM=XLX$XRFDIGIT
 echo ""
 echo "--------------------------------------"
-read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com.  " XLXDOMAIN
+read -p "What is the FQDN of the XLX Reflector dashboard? Example: xlx.domain.com  " XLXDOMAIN
 echo ""
 echo "--------------------------------------"
 read -p "select dashboard style 1 or 2   :" DASH
