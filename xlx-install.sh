@@ -46,6 +46,9 @@ echo "--------------------------------------------------------------------------
 echo "Making install directories and installing dependicies...."
 echo "------------------------------------------------------------------------------"
 ###########################################################
+if [ -z "$INSTA" ]; 
+then INSTA=0; 
+fi
 if [ $INSTA = R ]
 then
     cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
@@ -54,8 +57,7 @@ then
     cp /xlxd/xlxd.interlink  /tmp/xlxd.interlink
     cp /xlxd/xlxd.whitelist /tmp/xlxd.whitelist
     service xlxd stop
-fi
-if [ $INSTA = r ]
+elif [ $INSTA = r ]
 then
     cp /xlxd/xlxd.blacklist /tmp/xlxd.blacklist
     cp /xlxd/xlxd.terminal /tmp/xlxd.terminal
