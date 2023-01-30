@@ -184,6 +184,10 @@ if [ -z "$AMBPOR" ]
 then AMBPOR=10100
 
 fi
+if [ -z "$EMAIL" ] 
+then EMAIL=  
+
+fi
 if [ -z "$CALLSIGN" ]
 then CALLSIGN=LX1IQ
 
