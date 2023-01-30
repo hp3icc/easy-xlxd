@@ -71,13 +71,13 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
  
 #
 
-# contributions
+# Contributions
 
  I thank colleagues IU2NAF Diego and G7RZU Simon, for their time and information to successfully modify and customize this scrip at the service of all.
  
 Have fun, good Qso, success in your projects
 
-73
+73.
 
 HP3ICC
 
