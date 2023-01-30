@@ -336,7 +336,7 @@ then
     cp /tmp/xlxd.whitelist /xlxd/xlxd.whitelist
 fi
 #
-wget -q --no-check-certificate -r 'https://docs.google.com/uc?export=download&id=1c60nJZGBHRLMxFsBI5SZRwTJXwnSSGZN' -O /var/www/xlxd/favicon.ico
+wget -q --no-check-certificate -r 'https://docs.google.com/uc?export=download&id=1ZD-z5RanPPUpA2vm65mh_2elp3IH_q4x' -O /var/www/xlxd/favicon.ico
 ###############################
 sudo systemctl daemon-reload
 service xlxd stop
