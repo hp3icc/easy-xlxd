@@ -30,7 +30,7 @@ XLXD MULTIMODE REFLECTOR ,customized modified script, allows to adjust in an eas
     
     apt-get install curl sudo -y
     
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/hp3icc/easy-xlxd/main/xlx-install.sh)"
+    sh -c "$(curl -fsSL https://gitlab.com/hp3icc/easy-xlxd/-/raw/main/xlx-install.sh)"
     
    
  To extend or change configuration values, just run the script again and configure according to your preference
